@@ -1,0 +1,132 @@
+Complete Case Study: Agentic AI Intelligent Loan Approval System
+1. Problem Statement
+In modern banking systems, loan approval requires evaluating applicant details, credit history, risk indicators, and regulatory rules across multiple systems. Manual or rule-heavy approaches can be slow, inconsistent, and difficult to scale.
+This case study focuses on designing and implementing a multi-agent Agentic AI system that analyzes loan applications and classifies them as:
+Approved
+Rejected
+Requires Manual Review
+2. Business Objectives
+Automate loan application analysis using Agentic AI.
+Improve decision speed and consistency.
+Provide explainable and auditable decisions.
+Adopt a scalable, loosely coupled microservices architecture.
+3. Input Parameters — Loan Application Data
+The system receives the following application fields:
+Applicant ID
+Applicant Profile: age, income, and employment type
+Credit Score
+Loan Amount and Tenure
+Existing Liabilities
+Location
+Application Timestamp
+4. Proposed Solution — Multi-Agent Architecture
+The solution follows a distributed, microservices-based Agentic AI architecture. Independent agents collaborate through an orchestration layer and access data and tools through standardized interfaces.
+4.1 Presentation Layer
+Technology: Streamlit
+Provides a chatbot-style user interface for loan application submission and status display.
+4.2 Microservice Layer
+Technology: FastAPI
+Exposes REST endpoints to receive and validate application data.
+4.3 Orchestration Layer
+Technology: LangGraph
+Coordinates agent workflows.
+Manages shared workflow state.
+Controls decision routing and transitions between agents.
+4.4 Agent Layer
+Contains domain-specific agents, each responsible for a defined part of the loan evaluation lifecycle.
+4.5 Communication Layer
+Technology: MCP (Model Context Protocol)
+Provides standardized access to tools and services through MCP servers.
+5. Multi-Agent System Workflow
+The user submits loan application data through the Streamlit chatbot UI.
+The UI forwards the data to a FastAPI-based microservice.
+The microservice validates the request and passes it to the Agentic AI orchestration engine.
+The orchestrator invokes relevant agents and tools through MCP.
+Agents retrieve permitted contextual data, perform analysis, and return structured results.
+The orchestrator synthesizes the results and invokes the LLM where appropriate.
+The final result is returned to the chatbot UI for display.
+6. Agent Responsibilities
+6.1 Applicant Profile Agent
+MCP Server: ApplicantDB
+Responsibility: Assess the supplied applicant profile and retrieve relevant applicant records through authorized tools.
+Outputs:
+Income Stability Score
+Employment Risk
+Credit History Summary
+Application Completeness Flags
+6.2 Financial Risk Analysis Agent
+MCP Server: RiskRulesDB
+Responsibility: Evaluate financial affordability and risk indicators using validated calculations and applicable risk rules.
+Outputs:
+Debt-to-Income Ratio
+Credit Score Risk Level
+Loan Amount Risk
+Anomaly Detection
+Reasoning
+6.3 Loan Decision Agent
+MCP Server: DecisionSynthesis
+Responsibility: Combine the analysis results and applicable lending rules to produce a decision classification and supporting explanation.
+Outputs:
+Classification: Approve / Reject / Review
+Risk Score
+Confidence Level
+Key Decision Factors
+Explanation
+6.4 Compliance & Action Orchestrator Agent
+MCP Server: NotificationSystem
+Responsibility: Coordinate permitted post-decision actions, notifications, and audit records.
+Outputs:
+Action Taken
+Notification Sent
+Case ID
+Timestamp
+Summary
+7. Technology Stack
+The technologies listed for the case study are:
+Component
+Technology
+Chatbot UI
+Streamlit (Python)
+Microservices
+FastAPI (Python)
+Orchestration Engine
+LangGraph and LangChain
+MCP Framework
+FastMCP
+Agent Implementation
+FastAPI-based agents
+LLM
+Anthropic Claude Sonnet 4.6
+Agent SDK
+Anthropic Agent SDK
+Agent instructions
+Prompt engineering
+AI-assisted development
+Claude Code
+Programming language
+Python 3.x
+8. Evaluation Criteria
+Each participant must submit their own implementation and demonstrate:
+Understanding of Agentic AI architecture.
+Correct orchestration using LangGraph.
+Clear agent responsibilities and MCP usage.
+Ability to modify code live during evaluation.
+Explainable AI outputs.
+9. Evaluation Process
+Internal technical evaluation through a one-on-one session.
+Live code walkthrough during the discussion.
+Relative performance scoring.
+10. Expected System Output
+The system is expected to return one of the following classifications:
+Approved
+Rejected
+Requires Manual Review
+The result should include the relevant risk assessment, confidence information, key decision factors, and an explanation, as specified in the agent responsibilities.
+11. Important Implementation Considerations
+The case study defines the architecture and expected outputs, but does not specify actual lending thresholds, credit-score cutoffs, risk-score weights, or a complete regulatory policy. These must be defined and validated before real-world use.
+A reliable implementation should:
+Use deterministic and validated calculations for financial metrics.
+Apply documented lending rules consistently.
+Ground AI-generated explanations in verified input data and agent findings.
+Route incomplete, conflicting, or exceptional cases to manual review.
+Maintain appropriate access controls and auditable decision records.
